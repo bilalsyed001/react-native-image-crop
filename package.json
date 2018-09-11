@@ -22,8 +22,8 @@
     "bugs": {
         "url": "https://github.com/remobile/react-native-image-crop/issues"
     },
-    "peerDependencies": {
-        "@remobile/react-native-clip-rect": "^1.0.0"
+    "dependencies": {
+        "@remobile/react-native-clip-rect": "https://github.com/bilalsyed001/react-native-clip-rect.git"
     },
     "repository": {
         "type": "git",

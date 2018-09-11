@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     View,
     PanResponder,
@@ -7,17 +7,15 @@ import {
     StyleSheet,
 } from 'react-native';
 
-const ClipRect = require('@remobile/react-native-clip-rect');
+import ClipRect from '@remobile/react-native-clip-rect';
 
-module.exports = React.createClass({
-    getDefaultProps () {
-        return {
-            editRectWidth: 212,
-            editRectHeight: 212,
-            editRectRadius: 106,
-            overlayColor: 'rgba(0, 0, 0, 0.5)',
-        };
-    },
+export default class ImageCrop extends Component {
+    static defaultProps = {
+        editRectWidth: 212,
+        editRectHeight: 212,
+        editRectRadius: 106,
+        overlayColor: 'rgba(0, 0, 0, 0.5)',
+    }
     componentWillMount () {
         const { editRectWidth, editRectHeight, imageWidth, imageHeight } = this.props;
         // 上次/当前/动画 x 位移
@@ -86,7 +84,7 @@ module.exports = React.createClass({
             onPanResponderRelease: (evt, gestureState) => {},
             onPanResponderTerminate: (evt, gestureState) => {},
         });
-    },
+    }
     updateTranslate () {
         const { editRectWidth, editRectHeight } = this.props;
         const xOffest = (this.imageMinWidth - editRectWidth / this.scale) / 2;
@@ -106,7 +104,7 @@ module.exports = React.createClass({
         }
         this.animatedTranslateX.setValue(this.translateX);
         this.animatedTranslateY.setValue(this.translateY);
-    },
+    }
     getCropData () {
         const { editRectWidth, editRectHeight, imageWidth, imageHeight } = this.props;
         const ratioX = imageWidth / this.imageMinWidth;
@@ -119,7 +117,7 @@ module.exports = React.createClass({
             offset: { x: x * ratioX, y: y * ratioY },
             size: { width: width * ratioX, height: height * ratioY },
         };
-    },
+    }
     render () {
         const animatedStyle = {
             transform: [{
@@ -150,8 +148,8 @@ module.exports = React.createClass({
                 </View>
             </View>
         );
-    },
-});
+    }
+};
 
 const styles = StyleSheet.create({
     container: {
